@@ -47,8 +47,18 @@ make test
 # 单包测试（改动集中在某包时用这个，快）
 go test -race ./internal/ui/
 
-# 格式化
-gofmt -l -w .
+# 格式化 / lint（golangci-lint）
+make fmt
+make lint
+
+# 提交前一次跑完：fmt + lint + test
+make check
+
+# 试跑，参数经 ARGS 传入
+make run ARGS="-cwd /tmp/x -mode read-only"
+
+# 删除 bin/
+make clean
 
 # 安装到 $GOBIN（~/go/bin）
 make install
